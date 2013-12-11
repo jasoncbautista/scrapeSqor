@@ -35,18 +35,28 @@ league = "nba"
  file = open("nba.json")
  json = file.read
  
- parsed = JSON.parse(json)
- 
- parsed["rows"].each do |player|
-       p player['id']
-       id = player['id']
-       firstName =  player['first_name']
-       lastName = player['last_name']
-       r = Random.new
-       secs = r.rand(40...92)
-       getWikiLink(firstName, lastName, league)
-       puts secs
-       sleep(secs)
- end
- 
+
+
+
+ File.open("nbaWithWiki.json", 'w') { |newFile| 
+     parsed = JSON.parse(json)
+
+     parsed["rows"].each do |player|
+         p player['id']
+         id = player['id']
+         firstName =  player['first_name']
+         lastName = player['last_name']
+         r = Random.new
+         secs = r.rand(30...82)
+         wikiLink = getWikiLink(firstName, lastName, league)
+
+
+         strToWrite = firstName + ",,,," + lastName + ",,,," + id.to_s + ",,,," + wikiLink + "\n"
+         puts strToWrite
+         newFile.write(strToWrite)
+         puts secs
+         sleep(secs)
+     end
+
+ }
 # sudo gem install json
