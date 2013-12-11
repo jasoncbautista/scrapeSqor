@@ -14,11 +14,9 @@ json = file.read
 
 parsed = JSON.parse(json)
 
-parsed["offsets"].each do |shop|
-  shop['rows'].each do  |player|
-      p player['first_name']
-      break
-  end
+shop['rows'].each do  |player|
+  p player['first_name']
+end
 
 end
 
