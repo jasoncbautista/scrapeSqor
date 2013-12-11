@@ -14,9 +14,10 @@ json = file.read
 
 parsed = JSON.parse(json)
 
-shop['rows'].each do  |player|
-  p player['first_name']
-end
+parsed["rows"].each do |player|
+      p player['id']
+      p player['first_name']
+      p player['last_name']
 
 end
 
