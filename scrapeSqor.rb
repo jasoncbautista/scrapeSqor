@@ -4,18 +4,19 @@ require "json"
 
 
 
- currentOffset = 0;
+ currentOffset = 0
  $ii = 0
- $max = 5
+ $max = 70
  # max = 22
 
+ sport = "mlb"
  $playerCount = 0
  begin
-     File.open("nba.json", 'w') { |file| 
+     File.open(sport + ".json", 'w') { |file| 
 
-        file.write(' { "rows": [')
+        file.write(' {"' + sport + '": [')
         while $ii < $max do
-            response = Net::HTTP.get_response("cms-dev.sqor.com","/rest/sports/players/?sport=nba&offset=" + currentOffset.to_s)
+            response = Net::HTTP.get_response("cms-dev.sqor.com","/rest/sports/players/?sport="  + sport + "&offset=" + currentOffset.to_s)
             currentOffset = currentOffset + 25;
             arrayName = "offsets['" + currentOffset.to_s + "'] = ";
             # puts response.body
