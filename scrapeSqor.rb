@@ -26,7 +26,7 @@ require "json"
 
             parsed['rows'].each do  |row|
                 # Make sure our athlete comes from sports data
-                if row["external_id"].length > 1
+                if row["external_id"] != nil &&  row["external_id"].length > 1
                     if $playerCount != 0 
                         file.write(",")
                     end
