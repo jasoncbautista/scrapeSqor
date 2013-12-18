@@ -9,7 +9,7 @@ require "json"
  $max = 70
  # max = 22
 
- sport = "mlb"
+ sport = "nba"
  $playerCount = 0
  begin
      File.open(sport + ".json", 'w') { |file| 
@@ -29,10 +29,12 @@ require "json"
                     file.write(",")
                 end
                 $playerCount = $playerCount + 1
-
-
                 # p row.to_json
-                file.write(row.to_json)
+                player = {}
+                player["id"] = row["id"]
+                player["first_name"] = row["first_name"]
+                player["last_name"] = row["last_name"]
+                file.write(player.to_json)
             end
 
             $ii = $ii +  1
