@@ -9,7 +9,7 @@ require "json"
  $max = 70
  # max = 22
 
- sport = "nba"
+ sport = "mlb"
  $playerCount = 0
  begin
      File.open(sport + ".json", 'w') { |file| 
