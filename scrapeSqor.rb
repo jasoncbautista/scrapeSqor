@@ -25,16 +25,20 @@ require "json"
             parsed = JSON.parse(json)
 
             parsed['rows'].each do  |row|
-                if $playerCount != 0 
-                    file.write(",")
+                # Make sure our athlete comes from sports data
+                if row["external_id"].length > 1
+                    if $playerCount != 0 
+                        file.write(",")
+                    end
+                    $playerCount = $playerCount + 1
+                    # p row.to_json
+                    player = {}
+
+                    player["id"] = row["id"]
+                    player["first_name"] = row["first_name"]
+                    player["last_name"] = row["last_name"]
+                    file.write(player.to_json)
                 end
-                $playerCount = $playerCount + 1
-                # p row.to_json
-                player = {}
-                player["id"] = row["id"]
-                player["first_name"] = row["first_name"]
-                player["last_name"] = row["last_name"]
-                file.write(player.to_json)
             end
 
             $ii = $ii +  1
